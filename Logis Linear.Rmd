@@ -1,0 +1,63 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+```{r}
+head(longley)
+```
+
+
+```{r}
+dt <- subset(longley, select=c(Armed.Forces,Unemployed,Year))
+dt
+```
+
+
+```{r}
+model <- glm(as.factor(Year) ~Armed.Forces ,family=binomial(logit),data = longley)
+summary(model)
+```
+
+
+```{r}
+library(ggplot2)
+```
+
+
+```{r}
+ggplot(dt, aes(x=Year, y=Armed.Forces)) + geom_point() +
+  stat_smooth(method ="glm",family="binomial" ,se =FALSE) 
+```
+
+
+```{r}
+fit2 <- glm(as.factor(Armed.Forces)~Year+Unemployed, data=longley, family = binomial(logit))
+summary(fit2)
+```
+
+
+```{r}
+library(predict3d)
+```
+
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
